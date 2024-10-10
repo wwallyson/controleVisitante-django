@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from dashboard.views import index
+from morador.views import moradores
 from visitantes.views import registrar_visitante, informacoes_visitante, finalizar_visita
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -13,7 +14,8 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index ,name='index'),
-    
+    path('moradores/', moradores ,name='moradores'),
+     
     path('login/',auth_views.LoginView.as_view(template_name = 'login.html'), name= 'login'),
     path('logout/',auth_views.LogoutView.as_view(template_name = 'logout.html'), name= 'logout' ),
     

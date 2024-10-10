@@ -1,6 +1,7 @@
 
 
 from rest_framework import serializers
+from morador.models import Morador
 from visitantes.models import Visitante
 from porteiros.models import Porteiro
 from usuarios.models import Usuario
@@ -20,6 +21,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
        model = Usuario
        fields = '__all__'
        
+class UsuarioSerializer(serializers.ModelSerializer):
+    class meta:
+       model = Morador
+       fields = '__all__'
   
 
        

@@ -55,6 +55,7 @@ INSTALLED_APPS += [
     'usuarios',
     'porteiros',
     'visitantes',
+    'morador'
 ]
 
 REST_FRAMEWORK = {
