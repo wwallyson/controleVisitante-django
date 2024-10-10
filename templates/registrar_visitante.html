@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load widget_tweks%}
+{% load widget_tweaks %}
 
 {% block conteudo%}
                     <div class="container">
@@ -17,15 +17,25 @@
                                 <p class="mb-5 ml-1">
                                     <small> O asterisco (*) indica que o campo é obrigatório.</small>
                                 </p>
+
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% if field.errors %}
+                                            {% for erro in field.errors %}
+                                                <div class="alert alert-warning">{{erro}}</div>
+                                            {% endfor%}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                     
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post">
                                     <div class="form-row">
-                                       {% csrf_token %}
-                                        {% for  field in form%}
-                                        <div class="form-group col-md-12">
-                                            <label>{{field.label}} {% if field.field.required %}*{%endif%}</label>
-                                            {% render_field field placeholder=field.label class='form-control'%}
-                                        </div>
+                                        {% csrf_token %}
+                                        {% for field in form %}
+                                            <div class="form-group col-md-12">
+                                                <label>{{field.label}} {%if field.field.required %} * {% endif %}</label>
+                                                {% render_field field placeholder=field.label class='form-control'%}
+                                            </div>
                                         {% endfor %}
                                     </div>
                     
@@ -39,4 +49,4 @@
                         </div>
                     </div>
 
-{% endblock conteudo %}
+{% endblock conteudo%}
